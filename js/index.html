@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+</head>
+
+<script type="text/javascript">
+
+function httpGet()
+{
+	document.getElementById('sent').innerHTML = "sent";
+	var theUrl = "http://localhost:3453/";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, true); // false for synchronous request
+    xmlHttp.send( null );
+    xmlHttp.onreadystatechange = function() {
+                  if (xmlHttp.readyState === 4) {
+                        if (xmlHttp.status === 200) {
+                                document.getElementById('sent').innerHTML = "";
+    							document.getElementById('done').innerHTML = "done";
+                        }
+                    };  
+
+		}
+};
+
+</script>
+
+
+<body>
+
+<div>
+	<h3 id="sent"></h3>
+</div>
+<div>
+	<h3 id="done"></h3>
+</div>
+
+<button name="send" onclick="httpGet()">send</button>
+
+</body>
+</html>
