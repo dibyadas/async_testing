@@ -7,12 +7,18 @@ app = Flask(__name__)
 
 def test():
 	print("start")
-	time.sleep(7)
+	time.sleep(6)
 	print("end")
 
 
-@app.route("/")
-def dpd():
+
+@app.route("/front"):
+def front():
+	test()
+	return ("done",200,{'Access-Control-Allow-Origin':'*'})
+
+@app.route("/back_async")
+def back_async():
 	pool = Pool(processes=1)
 	r = pool.apply_async(test)
 	return ("done",200,{'Access-Control-Allow-Origin':'*'})
